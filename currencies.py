@@ -22,6 +22,26 @@ import requests
 
 class Currency:
 
+    def __init__(self, currency):
+        self.currency = currency.lower()
+
+    def get_exchange(self):
+        try:
+            if self.currency == "euro":
+                r = requests.get("http://www.dolarhoje.com/euro")
+            else:
+                r = requests.get("http://www.dolarhoje.com/")
+            data = r.text
+        except:
+            print("Yo just got damned")
+
+        data = BeautifulSoup(data, 'html.parser')
+        data = data.find(id="nacional")['value']
+
+        print("{currency}: R$ {price}".format(
+                                currency=self.currency, price=data))
+
+
     @staticmethod
     def get_dolar():
         try:

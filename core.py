@@ -21,8 +21,10 @@ from cryptocurrencies import Cryptocurrency
 from currencies import Currency
 
 def get_data():
-    Currency.get_dolar()
-    Currency.get_euro()
+    currency = Currency('dolar')
+    currency.get_exchange()
+    currency = Currency('euro')
+    currency.get_exchange()
     cryptocurrency = Cryptocurrency('bitcoin', False)
     cryptocurrency.get_coins()
     cryptocurrency = Cryptocurrency('dogecoin', False)
@@ -36,8 +38,10 @@ def get_data():
 
 
 def save_data():
-    Currency.get_dolar()
-    Currency.get_euro()
+    currency = Currency('dolar')
+    currency.get_exchange()
+    currency = Currency('euro')
+    currency.get_exchange()
     cryptocurrency = Cryptocurrency('bitcoin', True)
     cryptocurrency.get_coins()
     cryptocurrency = Cryptocurrency('dogecoin', True)
@@ -49,26 +53,28 @@ def save_data():
     cryptocurrency = Cryptocurrency('dash', True)
     cryptocurrency.get_coins()
 
+
+def get_certain_currency(currency, save):
+    cryptocurrency = Cryptocurrency(currency, save)
+    cryptocurrency.get_coins()
+    return True
+
 if __name__ == '__main__':
-    all_data = str(input("Do you want to get all data?[Y/n]"))
+    all_data = str(input("Do you want to get all data?[Y/n] "))
 
     # Checks if user wants to get all data or just a certain currency.
     if all_data == "Y" or all_data == "y":
-        save_data()
         response = str(input("Save data? [Y/n] "))
-
         if response == "Y" or response == "y":
             save_data()
         else:
             get_data()
 
     elif all_data == "N" or all_data == "n":
-        currency = str(input("Which cryptocurrency do you want to get?"))
-        save = str(input("Do you want to save the data?[Y/n]"))
+        currency = str(input("Which cryptocurrency do you want to get? "))
+        save = str(input("Do you want to save the data?[Y/n] "))
 
         if save == "Y" or save == "y":
-            cryptocurrency = Cryptocurrency(currency, True)
-            cryptocurrency.get_coins()
+            get_certain_currency(currency, True)
         else:
-            cryptocurrency = Cryptocurrency(currency, False)
-            cryptocurrency.get_coins()
+            get_certain_currency(currency, False)
