@@ -39,32 +39,4 @@ class Currency:
         data = data.find(id="nacional")['value']
 
         print("{currency}: R$ {price}".format(
-                                currency=self.currency, price=data))
-
-
-    @staticmethod
-    def get_dolar():
-        try:
-            r = requests.get("http://www.dolarhoje.com/")
-            dolar = r.text
-        except:
-            print("Yo just got damned")
-
-        dolar = BeautifulSoup(dolar, 'html.parser')
-        dolar = dolar.find(id="nacional")['value']
-
-        print("Dolar: R$ {price}".format(price=dolar))
-
-
-    @staticmethod
-    def get_euro():
-        try:
-            r = requests.get("http://www.dolarhoje.com/euro")
-            euro = r.text
-        except:
-            print("Yo just got damned")
-
-        euro = BeautifulSoup(euro, 'html.parser')
-        euro = euro.find(id="nacional")['value']
-
-        print("Euro: R$ {price}".format(price=euro))
+                                currency=self.currency.capitalize(), price=data))

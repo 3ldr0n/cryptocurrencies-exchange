@@ -19,45 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 from cryptocurrencies import Cryptocurrency
 from currencies import Currency
-
-def get_data():
-    currency = Currency('dolar')
-    currency.get_exchange()
-    currency = Currency('euro')
-    currency.get_exchange()
-    cryptocurrency = Cryptocurrency('bitcoin', False)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('dogecoin', False)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('ethereum', False)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('litecoin', False)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('dash', False)
-    cryptocurrency.get_coins()
-
-
-def save_data():
-    currency = Currency('dolar')
-    currency.get_exchange()
-    currency = Currency('euro')
-    currency.get_exchange()
-    cryptocurrency = Cryptocurrency('bitcoin', True)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('dogecoin', True)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('ethereum', True)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('litecoin', True)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('dash', True)
-    cryptocurrency.get_coins()
-
-
-def get_certain_currency(currency, save):
-    cryptocurrency = Cryptocurrency(currency, save)
-    cryptocurrency.get_coins()
-    return True
+from utils import get_certain_currency, get_data, save_data
 
 if __name__ == '__main__':
     all_data = str(input("Do you want to get all data?[Y/n] "))
