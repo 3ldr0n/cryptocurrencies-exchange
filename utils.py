@@ -18,13 +18,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
 from cryptocurrencies import Cryptocurrency
-from currencies import Currency
 
 def get_data():
-    currency = Currency('dolar')
-    currency.get_exchange()
-    currency = Currency('euro')
-    currency.get_exchange()
     cryptocurrency = Cryptocurrency('bitcoin', False)
     cryptocurrency.get_coins()
     cryptocurrency = Cryptocurrency('dogecoin', False)
@@ -38,10 +33,6 @@ def get_data():
 
 
 def save_data():
-    currency = Currency('dolar')
-    currency.get_exchange()
-    currency = Currency('euro')
-    currency.get_exchange()
     cryptocurrency = Cryptocurrency('bitcoin', True)
     cryptocurrency.get_coins()
     cryptocurrency = Cryptocurrency('dogecoin', True)

@@ -18,7 +18,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 """
 
 from cryptocurrencies import Cryptocurrency
-from currencies import Currency
 from utils import get_certain_currency, get_data, save_data
 
 if __name__ == '__main__':
