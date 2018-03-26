@@ -24,18 +24,21 @@ if __name__ == '__main__':
     all_data = str(input("Do you want to get all data?[Y/n] "))
 
     # Checks if user wants to get all data or just a certain currency.
-    if all_data == "Y" or all_data == "y":
+    all_data = all_data.lower().strip()
+    if all_data == "y":
         response = str(input("Save data? [Y/n] "))
-        if response == "Y" or response == "y":
+        response = response.lower().strip()
+        if response == "y":
             save_data()
         else:
             get_data()
 
-    elif all_data == "N" or all_data == "n":
+    elif all_data == "n":
         currency = str(input("Which cryptocurrency do you want to get? "))
         save = str(input("Do you want to save the data?[Y/n] "))
+        save = save.lower().strip()
 
-        if save == "Y" or save == "y":
+        if save == "y":
             get_certain_currency(currency, True)
         else:
             get_certain_currency(currency, False)
