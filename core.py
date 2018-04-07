@@ -21,22 +21,39 @@ from cryptocurrencies import Cryptocurrency
 from utils import get_certain_currency, get_data, save_data
 
 if __name__ == '__main__':
-    all_data = str(input("Do you want to get all data?[Y/n] "))
+    option = input("Do you want to get all data?[Y/n] ")
 
     # Checks if user wants to get all data or just a certain currency.
-    all_data = all_data.lower().strip()
-    if all_data == "y":
-        response = str(input("Save data? [Y/n] "))
+    option = option.lower().strip()
+
+    while option != "y" and option != "n":
+        print("Invalid response.\n")
+        option = input("Do you want to get all data?[Y/n] ")
+        option = option.lower().strip()
+
+    if option == "y":
+        response = input("Save data? [Y/n] ")
         response = response.lower().strip()
+
+        while response != "y" and response != "n":
+            print("Invalid response.\n")
+            response = input("Save data?[Y/n] ")
+            response = response.lower().strip()
+
         if response == "y":
             save_data()
         else:
             get_data()
 
-    elif all_data == "n":
-        currency = str(input("Which cryptocurrency do you want to get? "))
-        save = str(input("Do you want to save the data?[Y/n] "))
+    else:
+        currency = input("Which cryptocurrency do you want to get? ")
+        save = input("Do you want to save the data?[Y/n] ")
         save = save.lower().strip()
+
+        while save != "y" and save != "n":
+            print("Invalid response.\n")
+            save = input("Do you want to save the data?[Y/n] ")
+            save = save.lower().strip()
 
         if save == "y":
             get_certain_currency(currency, True)
