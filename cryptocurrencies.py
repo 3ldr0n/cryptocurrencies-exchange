@@ -21,7 +21,6 @@ import os
 import csv
 import time
 
-from bs4 import BeautifulSoup
 import requests
 
 class Cryptocurrency:
@@ -34,17 +33,13 @@ class Cryptocurrency:
     def get_coins(self):
         # Try to connect to the server.
         try:
-            r = requests.get("https://coinmarketcap.com/currencies/{}/"
+            r = requests.get("https://api.coinmarketcap.com/v1/ticker/{}"
                                                     .format(self.currency))
-            coin_data = r.text
+            coin_data = r.json()
+            coin_data = coin_data[0]
         except:
             print("Can't connect to the server")
             return False
-
-        # Gets the data.
-        coin_data = BeautifulSoup(coin_data, 'html.parser')
-        coin_data = coin_data.find(id="quote_price")
-        coin_data = coin_data.get('data-usd')
 
         # Saves the data retrieved in a csv file.
         if self.save is True:
@@ -52,12 +47,14 @@ class Cryptocurrency:
             file = folder + "/data/{}_data.csv".format(self.currency)
             with open(file, "a") as file:
                 date = time.strftime("%x-%X")
-                price = [date, coin_data]
+                price = [date, coin_data['price_usd']]
                 write = csv.writer(file)
                 write.writerow(price)
 
-        print("{currency}: ${price}".format(
-                        currency=self.currency.capitalize(), price=coin_data))
+        print("{currency} ({symbol}): ${price}".format(
+                        currency=coin_data['name'],
+                        symbol=coin_data['symbol'],
+                        price=coin_data['price_usd']))
 
         return coin_data
 
