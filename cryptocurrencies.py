@@ -23,18 +23,19 @@ import time
 
 import requests
 
+
 class Cryptocurrency:
 
     def __init__(self, currency, save):
         self.currency = currency
         self.save = save
 
-
     def get_coins(self):
         # Try to connect to the server.
         try:
-            r = requests.get("https://api.coinmarketcap.com/v1/ticker/{}"
-                                                    .format(self.currency))
+            r = requests.get(
+                "https://api.coinmarketcap.com/v1/ticker/{}"
+                .format(self.currency))
             coin_data = r.json()
             coin_data = coin_data[0]
         except:
@@ -44,7 +45,7 @@ class Cryptocurrency:
         # Saves the data retrieved in a csv file.
         if self.save is True:
             folder = os.path.dirname(os.path.abspath(__file__))
-            file = folder + "/data/{}_data.csv".format(self.currency)
+            file = folder + "/data/{}_data.csv".format(self.currency.lower())
             with open(file, "a") as file:
                 date = time.strftime("%x-%X")
                 price = [date, coin_data['price_usd']]
@@ -52,12 +53,11 @@ class Cryptocurrency:
                 write.writerow(price)
 
         print("{currency} ({symbol}): ${price}".format(
-                        currency=coin_data['name'],
-                        symbol=coin_data['symbol'],
-                        price=coin_data['price_usd']))
+            currency=coin_data['name'],
+            symbol=coin_data['symbol'],
+            price=coin_data['price_usd']))
 
         return coin_data
-
 
     def coin_to_dollar(self, number_of_coins):
         """
