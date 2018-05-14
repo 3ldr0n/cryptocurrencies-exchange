@@ -38,7 +38,7 @@ class Cryptocurrency:
                 .format(self.currency))
             coin_data = r.json()
             coin_data = coin_data[0]
-        except:
+        except Exception as e:
             print("Can't connect to the server")
             return False
 
