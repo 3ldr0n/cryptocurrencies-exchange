@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 from cryptocurrencies import Cryptocurrency
 
+
 def get_data():
     cryptocurrency = Cryptocurrency('bitcoin', False)
     cryptocurrency.get_coins()

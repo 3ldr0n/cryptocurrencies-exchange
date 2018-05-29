@@ -27,7 +27,7 @@ import requests
 class Cryptocurrency:
 
     def __init__(self, currency, save):
-        self.currency = currency
+        self.currency = currency.lower()
         self.save = save
 
     def get_coins(self):
@@ -45,7 +45,7 @@ class Cryptocurrency:
         # Saves the data retrieved in a csv file.
         if self.save is True:
             folder = os.path.dirname(os.path.abspath(__file__))
-            file = folder + "/data/{}_data.csv".format(self.currency.lower())
+            file = folder + "/data/{}_data.csv".format(self.currency)
             with open(file, "a") as file:
                 date = time.strftime("%x-%X")
                 price = [date, coin_data['price_usd']]
