@@ -19,31 +19,25 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 from cryptocurrencies import Cryptocurrency
 
+cryptocurrencies = [
+    "bitcoin",
+    "ethereum",
+    "litecoin",
+    "dash",
+    "dogecoin"
+]
+
 
 def get_data():
-    cryptocurrency = Cryptocurrency('bitcoin', False)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('dogecoin', False)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('ethereum', False)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('litecoin', False)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('dash', False)
-    cryptocurrency.get_coins()
+    for crypto in cryptocurrencies:
+        cryptocurrency = Cryptocurrency(crypto, False)
+        cryptocurrency.get_coins()
 
 
 def save_data():
-    cryptocurrency = Cryptocurrency('bitcoin', True)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('dogecoin', True)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('ethereum', True)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('litecoin', True)
-    cryptocurrency.get_coins()
-    cryptocurrency = Cryptocurrency('dash', True)
-    cryptocurrency.get_coins()
+    for crypto in cryptocurrencies:
+        cryptocurrency = Cryptocurrency(crypto, True)
+        cryptocurrency.get_coins()
 
 
 def get_certain_currency(currency, save):
