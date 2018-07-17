@@ -60,8 +60,7 @@ class Cryptocurrency:
         return coin_data
 
     def coin_to_dollar(self, number_of_coins):
-        """
-        This function takes a certain cryptocurrency and exchange
+        """This function takes a certain cryptocurrency and exchange
         it to dollars.
         """
         price = self.get_coins()
