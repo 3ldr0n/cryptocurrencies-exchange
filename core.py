@@ -25,15 +25,14 @@ if __name__ == '__main__':
     option = sys.argv[1]
 
     if option == "all":
-        if sys.argv == "save":
+        if sys.argv[2].lower() == "save":
             save_data()
         else:
             get_data()
     else:
         currency = sys.argv[1]
-        save = sys.argv[2]
 
-        if save == "save":
+        if sys.argv[2].lower() == "save":
             get_certain_currency(currency, True)
         else:
             get_certain_currency(currency, False)
