@@ -22,9 +22,8 @@ import sys
 from utils import get_certain_currency, get_data, save_data
 
 if __name__ == '__main__':
-    option = sys.argv[1]
 
-    if option == "all":
+    if sys.argv[1] == "all":
         if sys.argv[2].lower() == "save":
             save_data()
         else:
