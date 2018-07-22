@@ -22,6 +22,9 @@ import sys
 from utils import get_certain_currency, get_data, save_data
 
 if __name__ == '__main__':
+    if len(sys.argv) < 3:
+        print("Not enough arguments.")
+        exit()
 
     if sys.argv[1] == "all":
         if sys.argv[2].lower() == "save":
