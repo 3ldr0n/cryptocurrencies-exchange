@@ -26,15 +26,18 @@ if __name__ == '__main__':
         print("Not enough arguments.")
         exit()
 
-    if sys.argv[1] == "all":
-        if sys.argv[2].lower() == "save":
-            save_data()
+    if sys.argv[1] == "get":
+        if sys.argv[2] == "all":
+            if sys.argv[3].lower() == "save":
+                save_data()
+            else:
+                get_data()
         else:
-            get_data()
-    else:
-        currency = sys.argv[1]
+            currency = sys.argv[2]
 
-        if sys.argv[2].lower() == "save":
-            get_certain_currency(currency, True)
-        else:
-            get_certain_currency(currency, False)
+            if sys.argv[3].lower() == "save":
+                get_certain_currency(currency, True)
+            else:
+                get_certain_currency(currency, False)
+    elif sys.argv[1] == "exchange":
+        print("Exchanging")
