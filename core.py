@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 import sys
 
+from cryptocurrency import Cryptocurrency
 from utils import get_certain_currency, get_data, save_data
 
 if __name__ == '__main__':
@@ -40,4 +41,5 @@ if __name__ == '__main__':
             else:
                 get_certain_currency(currency, False)
     elif sys.argv[1] == "exchange":
-        print("Exchanging")
+        currency = Cryptocurrency(sys.argv[2].lower(), False)
+        currency.coin_to_dollar(float(sys.argv[3]))

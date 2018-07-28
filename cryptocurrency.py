@@ -57,7 +57,7 @@ class Cryptocurrency:
             symbol=coin_data['symbol'],
             price=coin_data['price_usd']))
 
-        return coin_data
+        return float(coin_data["price_usd"])
 
     def coin_to_dollar(self, number_of_coins):
         """This function takes a certain cryptocurrency and exchange
