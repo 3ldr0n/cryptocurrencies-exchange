@@ -46,16 +46,20 @@ class Cryptocurrency:
         if self.save is True:
             folder = os.path.dirname(os.path.abspath(__file__))
             file = folder + "/data/{}_data.csv".format(self.currency)
+            if float(coin_data["price_usd"]) > 1:
+                price = float("{:.2f}".format(float(coin_data["price_usd"])))
+            else:
+                price = float(coin_data["price_usd"])
             with open(file, "a") as file:
                 date = time.strftime("%x-%X")
-                price = [date, coin_data['price_usd']]
+                data = [date, price]
                 write = csv.writer(file)
-                write.writerow(price)
+                write.writerow(data)
 
         print("{currency} ({symbol}): ${price}".format(
             currency=coin_data['name'],
             symbol=coin_data['symbol'],
-            price=coin_data['price_usd']))
+            price=price))
 
         return float(coin_data["price_usd"])
 
