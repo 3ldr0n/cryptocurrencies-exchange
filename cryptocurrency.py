@@ -31,7 +31,6 @@ class Cryptocurrency:
         self.save = save
 
     def get_coins(self):
-        # Try to connect to the server.
         try:
             r = requests.get(
                 "https://api.coinmarketcap.com/v1/ticker/{}"
@@ -42,14 +41,16 @@ class Cryptocurrency:
             print("Can't connect to the server")
             return False
 
+        if float(coin_data["price_usd"]) > 1:
+            price = float("{:.2f}".format(float(coin_data["price_usd"])))
+        else:
+            price = float(coin_data["price_usd"])
+
         # Saves the data retrieved in a csv file.
         if self.save is True:
             folder = os.path.dirname(os.path.abspath(__file__))
             file = folder + "/data/{}_data.csv".format(self.currency)
-            if float(coin_data["price_usd"]) > 1:
-                price = float("{:.2f}".format(float(coin_data["price_usd"])))
-            else:
-                price = float(coin_data["price_usd"])
+
             with open(file, "a") as file:
                 date = time.strftime("%x-%X")
                 data = [date, price]
