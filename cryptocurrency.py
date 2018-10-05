@@ -21,6 +21,8 @@ import os
 import csv
 import time
 
+from urllib.error import HTTPError
+
 import requests
 
 
@@ -37,7 +39,7 @@ class Cryptocurrency:
                 .format(self.currency))
             coin_data = r.json()
             coin_data = coin_data[0]
-        except Exception as e:
+        except HTTPError:
             print("Can't connect to the server")
             return False
 
